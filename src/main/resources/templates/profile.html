@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thông tin cá nhân - SSO Demo</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap Icons -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css" rel="stylesheet">
+    <style>
+        .profile-avatar {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1rem;
+        }
+        .info-item {
+            border-left: 4px solid #0d6efd;
+            padding-left: 1rem;
+            margin-bottom: 1rem;
+        }
+        .role-badge {
+            font-size: 0.85rem;
+            padding: 0.5rem 1rem;
+        }
+    </style>
+</head>
+<body class="bg-light">
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+        <div class="container">
+            <a class="navbar-brand" href="/">
+                <i class="bi bi-shield-lock me-2"></i>SSO Demo
+            </a>
+            <div class="navbar-nav ms-auto">
+                <span class="navbar-text me-3">
+                    <i class="bi bi-person-circle me-1"></i>
+                    <span th:text="${name}">User</span>
+                </span>
+                <a class="nav-link" href="/">
+                    <i class="bi bi-house"></i> Trang chủ
+                </a>
+                <a class="nav-link" href="/logout">
+                    <i class="bi bi-box-arrow-right"></i> Đăng xuất
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="container my-5">
+        <div class="row">
+            <!-- Profile Header -->
+            <div class="col-md-4 mb-4">
+                <div class="card shadow">
+                    <div class="card-body text-center p-4">
+                        <div class="profile-avatar">
+                            <i class="bi bi-person-fill text-white" style="font-size: 4rem;"></i>
+                        </div>
+                        <h4 class="card-title" th:text="${fullName ?: name}">Full Name</h4>
+                        <p class="text-muted" th:text="'@' + ${name}">@username</p>
+                        
+                        <!-- Action Buttons -->
+                        <div class="d-grid gap-2">
+                            <a href="/" class="btn btn-primary">
+                                <i class="bi bi-arrow-left me-2"></i>Về trang chủ
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Roles Card -->
+                <div class="card shadow mt-4">
+                    <div class="card-header bg-warning text-dark">
+                        <h6 class="mb-0">
+                            <i class="bi bi-award me-2"></i>Quyền truy cập
+                        </h6>
+                    </div>
+                    <div class="card-body">
+                        <div th:if="${roles}" class="d-flex flex-wrap gap-2">
+                            <span th:each="role : ${roles}" 
+                                  th:text="${role.authority}"
+                                  class="badge bg-primary role-badge"
+                                  th:classappend="${role.authority == 'NICE'} ? 'bg-warning text-dark' : 'bg-secondary'">
+                                Role
+                            </span>
+                        </div>
+                        <div th:unless="${roles}">
+                            <small class="text-muted">Không có quyền đặc biệt</small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Profile Details -->
+            <div class="col-md-8">
+                <div class="card shadow">
+                    <div class="card-header">
+                        <h5 class="mb-0">
+                            <i class="bi bi-person-gear me-2"></i>Thông tin chi tiết
+                        </h5>
+                    </div>
+                    <div class="card-body p-4">
+                        <div class="row">
+                            <!-- Basic Information -->
+                            <div class="col-12 mb-4">
+                                <h6 class="text-primary mb-3">
+                                    <i class="bi bi-info-circle me-2"></i>Thông tin cơ bản
+                                </h6>
+                                
+                                <div class="info-item">
+                                    <label class="form-label fw-bold">Tên đăng nhập:</label>
+                                    <p class="mb-0" th:text="${name}">username</p>
+                                </div>
+
+                                <div class="info-item" th:if="${email}">
+                                    <label class="form-label fw-bold">Email:</label>
+                                    <p class="mb-0" th:text="${email}">email@example.com</p>
+                                </div>
+
+                                <div class="info-item" th:if="${givenName}">
+                                    <label class="form-label fw-bold">Họ:</label>
+                                    <p class="mb-0" th:text="${givenName}">Given Name</p>
+                                </div>
+
+                                <div class="info-item" th:if="${familyName}">
+                                    <label class="form-label fw-bold">Tên:</label>
+                                    <p class="mb-0" th:text="${familyName}">Family Name</p>
+                                </div>
+                            </div>
+
+                            <!-- Security Information -->
+                            <div class="col-12 mb-4">
+                                <h6 class="text-success mb-3">
+                                    <i class="bi bi-shield-check me-2"></i>Thông tin bảo mật
+                                </h6>
+                                
+                                <div class="row">
+                                    <div class="col-sm-6">
+                                        <div class="card bg-light">
+                                            <div class="card-body text-center p-3">
+                                                <i class="bi bi-check-circle text-success fs-3"></i>
+                                                <h6 class="mt-2">SSO Enabled</h6>
+                                                <small class="text-muted">Đăng nhập tập trung</small>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-6 mt-3 mt-sm-0">
+                                        <div class="card bg-light">
+                                            <div class="card-body text-center p-3">
+                                                <i class="bi bi-key text-primary fs-3"></i>
+                                                <h6 class="mt-2">JWT Token</h6>
+                                                <small class="text-muted">Xác thực an toàn</small>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Account Actions -->
+                            <div class="col-12">
+                                <h6 class="text-warning mb-3">
+                                    <i class="bi bi-gear me-2"></i>Hành động tài khoản
+                                </h6>
+                                
+                                <div class="row">
+                                    <div class="col-sm-6 mb-3">
+                                        <button class="btn btn-outline-info w-100" onclick="refreshProfile()">
+                                            <i class="bi bi-arrow-clockwise me-2"></i>Làm mới thông tin
+                                        </button>
+                                    </div>
+                                    <div class="col-sm-6 mb-3">
+                                        <button class="btn btn-outline-secondary w-100" onclick="downloadProfile()">
+                                            <i class="bi bi-download me-2"></i>Tải thông tin
+                                        </button>
+                                    </div>
+                                    <div class="col-sm-6 mb-3">
+                                        <a href="/" class="btn btn-outline-primary w-100">
+                                            <i class="bi bi-house me-2"></i>Về trang chủ
+                                        </a>
+                                    </div>
+                                    <div class="col-sm-6 mb-3">
+                                        <a href="/logout" class="btn btn-outline-danger w-100">
+                                            <i class="bi bi-box-arrow-right me-2"></i>Đăng xuất
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Activity Log -->
+                <div class="card shadow mt-4">
+                    <div class="card-header">
+                        <h6 class="mb-0">
+                            <i class="bi bi-clock-history me-2"></i>Hoạt động gần đây
+                        </h6>
+                    </div>
+                    <div class="card-body">
+                        <div class="d-flex align-items-center mb-3">
+                            <i class="bi bi-check-circle text-success me-3"></i>
+                            <div>
+                                <strong>Đăng nhập thành công</strong>
+                                <br><small class="text-muted">Hôm nay</small>
+                            </div>
+                        </div>
+                        <div class="d-flex align-items-center mb-3">
+                            <i class="bi bi-eye text-info me-3"></i>
+                            <div>
+                                <strong>Xem trang profile</strong>
+                                <br><small class="text-muted">Vừa xong</small>
+                            </div>
+                        </div>
+                        <div class="text-center">
+                            <small class="text-muted">Chỉ hiển thị hoạt động gần đây</small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <script>
+        function refreshProfile() {
+            window.location.reload();
+        }
+
+        function downloadProfile() {
+            const profileData = {
+                username: /*[[${name}]]*/ 'username',
+                email: /*[[${email}]]*/ 'email',
+                fullName: /*[[${fullName}]]*/ 'fullName',
+                givenName: /*[[${givenName}]]*/ 'givenName',
+                familyName: /*[[${familyName}]]*/ 'familyName'
+            };
+            
+            const dataStr = JSON.stringify(profileData, null, 2);
+            const dataBlob = new Blob([dataStr], {type: 'application/json'});
+            
+            const link = document.createElement('a');
+            link.href = URL.createObjectURL(dataBlob);
+            link.download = 'profile.json';
+            link.click();
+        }
+    </script>
+</body>
+</html>

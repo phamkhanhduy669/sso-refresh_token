@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>NICE Users - Exclusive Area</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap Icons -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css" rel="stylesheet">
+    <style>
+        .nice-gradient {
+            background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%);
+        }
+        .feature-icon {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1rem;
+        }
+        .card-hover {
+            transition: all 0.3s;
+        }
+        .card-hover:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+        }
+    </style>
+</head>
+<body class="bg-light">
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-warning">
+        <div class="container">
+            <a class="navbar-brand text-dark" href="/">
+                <i class="bi bi-star-fill me-2"></i>NICE Area
+            </a>
+            <div class="navbar-nav ms-auto">
+                <a class="nav-link text-dark" href="/">
+                    <i class="bi bi-house me-1"></i>Trang chủ
+                </a>
+                <a class="nav-link text-dark" href="/logout">
+                    <i class="bi bi-box-arrow-right me-1"></i>Đăng xuất
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <div class="nice-gradient py-5">
+        <div class="container text-center">
+            <div class="row justify-content-center">
+                <div class="col-md-8">
+                    <i class="bi bi-award display-1 text-warning mb-4"></i>
+                    <h1 class="display-4 text-dark mb-3">Khu vực NICE Users</h1>
+                    <p class="lead text-dark">
+                        Chào mừng bạn đến với khu vực dành riêng cho những người dùng đặc biệt có quyền NICE!
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="container my-5">
+        <!-- Welcome Message -->
+        <div class="row mb-5">
+            <div class="col-12">
+                <div class="alert alert-success border-0 shadow">
+                    <div class="d-flex align-items-center">
+                        <i class="bi bi-check-circle-fill fs-3 me-3"></i>
+                        <div>
+                            <h4 class="alert-heading mb-1">Xác thực thành công!</h4>
+                            <p class="mb-0">
+                                Bạn đã được xác thực với quyền <strong>NICE</strong> và có thể truy cập vào khu vực này.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Features Grid -->
+        <div class="row">
+            <div class="col-md-4 mb-4">
+                <div class="card h-100 border-0 shadow card-hover">
+                    <div class="card-body text-center p-4">
+                        <div class="feature-icon bg-primary text-white">
+                            <i class="bi bi-shield-lock fs-3"></i>
+                        </div>
+                        <h5 class="card-title">Bảo mật cao cấp</h5>
+                        <p class="card-text text-muted">
+                            Truy cập được bảo vệ bằng hệ thống xác thực JWT và role-based access control.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-4 mb-4">
+                <div class="card h-100 border-0 shadow card-hover">
+                    <div class="card-body text-center p-4">
+                        <div class="feature-icon bg-success text-white">
+                            <i class="bi bi-people fs-3"></i>
+                        </div>
+                        <h5 class="card-title">Cộng đồng NICE</h5>
+                        <p class="card-text text-muted">
+                            Kết nối với những người dùng khác có cùng quyền truy cập đặc biệt.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-4 mb-4">
+                <div class="card h-100 border-0 shadow card-hover">
+                    <div class="card-body text-center p-4">
+                        <div class="feature-icon bg-warning text-dark">
+                            <i class="bi bi-star fs-3"></i>
+                        </div>
+                        <h5 class="card-title">Tính năng độc quyền</h5>
+                        <p class="card-text text-muted">
+                            Trải nghiệm các tính năng và dịch vụ chỉ dành cho NICE users.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Advanced Features -->
+        <div class="row mt-5">
+            <div class="col-md-8 mx-auto">
+                <div class="card border-warning">
+                    <div class="card-header bg-warning text-dark">
+                        <h5 class="mb-0">
+                            <i class="bi bi-gear me-2"></i>Tính năng nâng cao
+                        </h5>
+                    </div>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <h6><i class="bi bi-api me-2 text-primary"></i>API Access</h6>
+                                <p class="small text-muted">Truy cập API với quyền NICE</p>
+                            </div>
+                            <div class="col-sm-6">
+                                <h6><i class="bi bi-database me-2 text-success"></i>Data Analytics</h6>
+                                <p class="small text-muted">Phân tích dữ liệu chuyên sâu</p>
+                            </div>
+                            <div class="col-sm-6">
+                                <h6><i class="bi bi-cloud me-2 text-info"></i>Cloud Storage</h6>
+                                <p class="small text-muted">Lưu trữ đám mây không giới hạn</p>
+                            </div>
+                            <div class="col-sm-6">
+                                <h6><i class="bi bi-headset me-2 text-danger"></i>Priority Support</h6>
+                                <p class="small text-muted">Hỗ trợ ưu tiên 24/7</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Action Buttons -->
+        <div class="row mt-5">
+            <div class="col-12 text-center">
+                <h4 class="mb-4">Hành động</h4>
+                <div class="btn-group" role="group">
+                    <a href="/" class="btn btn-outline-primary">
+                        <i class="bi bi-house me-2"></i>Về trang chủ
+                    </a>
+                    <a href="/profile" class="btn btn-outline-secondary">
+                        <i class="bi bi-person me-2"></i>Thông tin cá nhân
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-dark text-white text-center py-4 mt-5">
+        <div class="container">
+            <p class="mb-0">
+                <i class="bi bi-award me-2"></i>
+                NICE Users Area - Exclusive Access Only
+            </p>
+        </div>
+    </footer>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
