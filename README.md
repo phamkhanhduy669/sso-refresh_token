@@ -10,8 +10,9 @@
 
 3. Token
 
-- Access token & refresh token
-<img width="1919" height="1079" alt="Screenshot 2025-10-06 103730" src="https://github.com/user-attachments/assets/8a319be7-23ae-4941-a5ea-dd3176a2b979" />
+- Access token & refresh token & ID token
+<img width="1908" height="1079" alt="image" src="https://github.com/user-attachments/assets/7aa68168-f614-4347-b103-667af28b4a83" />
+
 <p><em>Hình 3: Access token & refresh token</em></p>
 
 - Đăng nhập lấy thông tin bằng access token
